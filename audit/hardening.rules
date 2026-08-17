@@ -1,0 +1,14 @@
+# /etc/audit/rules.d/hardening.rules
+#
+# Règles de traçabilité (auditd) — Phase 5.
+# Surveillance des fichiers système critiques dont la modification
+# pourrait indiquer une tentative de compromission ou un changement
+# de configuration non autorisé.
+#
+# Appliquer avec : sudo augenrules --load
+# Vérifier avec  : sudo auditctl -l
+
+-w /etc/passwd -p wa -k identity_changes
+-w /etc/shadow -p wa -k identity_changes
+-w /etc/ssh/sshd_config -p wa -k sshd_config_changes
+-w /etc/sudoers -p wa -k sudoers_changes
