@@ -1,14 +1,14 @@
 # Durcissement d'un serveur Reverse Proxy Nginx sous CentOS en zone DMZ
 
-Projet réalisé dans le cadre d'un stage de fin d'année (École Nationale Supérieure d'Informatique et d'Analyse des Systèmes — Rabat), portant sur la conception et l'implémentation d'une démarche de durcissement d'un serveur reverse proxy Nginx sous Linux CentOS Stream 9, positionné en zone démilitarisée (DMZ).
+Projet réalisé dans le cadre d'un stage de fin d'année (École Nationale Supérieure d'Informatique et d'Analyse des Systèmes, Rabat), portant sur la conception et l'implémentation d'une démarche de durcissement d'un serveur reverse proxy Nginx sous Linux CentOS Stream 9, positionné en zone démilitarisée (DMZ).
 
-> ⚠️ Ce dépôt présente une démarche méthodologique et des exemples de configuration à but pédagogique. Toutes les valeurs (IP, certificats, etc.) sont issues d'un environnement de test personnel et ne reflètent aucune donnée réelle d'infrastructure de production.
+ Ce dépôt présente une démarche méthodologique et des exemples de configuration à but pédagogique. Toutes les valeurs (IP, certificats, etc.) sont issues d'un environnement de test personnel et ne reflètent aucune donnée réelle d'infrastructure de production.
 
-## Contexte
+# Contexte
 
 Ce travail répond à un besoin classique en architecture de sécurité : publier une application web accessible depuis Internet tout en protégeant le réseau interne (LAN) d'une organisation. La solution repose sur deux éléments complémentaires :
 
-- une **zone démilitarisée (DMZ)**, segment réseau isolé à la fois d'Internet et du LAN par des dispositifs de filtrage ;
+- une **zone démilitarisée (DMZ)**, segment réseau isolé à la fois d'Internet et du LAN par des dispositifs de filtrage
 - un **serveur reverse proxy** positionné dans cette DMZ, unique point de contact avec l'extérieur, qui retransmet les requêtes vers l'application interne sans jamais l'exposer directement.
 
 ## Architecture
@@ -24,7 +24,7 @@ Architecture DMZ à **deux pare-feu** (conforme aux recommandations ANSSI-PA-066
 Internet → [Pare-feu externe] → [DMZ: Reverse Proxy Nginx] → [Pare-feu interne] → [LAN: Serveur applicatif]
 ```
 
-## Démarche de durcissement — 5 phases
+# Démarche de durcissement — 5 phases
 
 | Phase | Objectif | Fichiers associés |
 |---|---|---|
@@ -34,7 +34,7 @@ Internet → [Pare-feu externe] → [DMZ: Reverse Proxy Nginx] → [Pare-feu int
 | **4. Sécurisation du reverse proxy** | TLS 1.2/1.3, redirection HTTPS, restriction des méthodes HTTP, rate limiting | `nginx/reverse-proxy.conf` |
 | **5. Cloisonnement réseau et traçabilité** | Zones firewalld, durcissement noyau (ip_forward, SYN cookies), règles auditd | `firewalld/`, `sysctl/99-hardening.conf`, `audit/hardening.rules` |
 
-## Résultats
+# Résultats
 
 Évaluation de conformité réalisée avec **OpenSCAP**, profil **CIS Red Hat Enterprise Linux 9 Benchmark — Level 1 Server** :
 
@@ -46,18 +46,18 @@ Internet → [Pare-feu externe] → [DMZ: Reverse Proxy Nginx] → [Pare-feu int
 
 Progression de **10 points**, avec 26 règles supplémentaires satisfaites, sans interruption du service de publication.
 
-## Choix technologiques
+# Choix technologiques
 
 - **CentOS Stream 9** (profil Minimal Install) : compatibilité RHEL, maturité SELinux/firewalld/OpenSCAP
 - **Nginx** : architecture événementielle légère, référentiel CIS Benchmark dédié, large adoption industrielle
 
-## Référentiels mobilisés
+# Référentiels mobilisés
 
 - [CIS Benchmarks](https://www.cisecurity.org/cis-benchmarks) (CentOS/RHEL, Nginx)
 - Guides ANSSI : ANSSI-BP-028 (sécurité Linux), ANSSI-PA-066 (interconnexion Internet/DMZ), ANSSI-PA-035 (TLS)
 - NIST SP 800-123 — Guide to General Server Security
 
-## Structure du dépôt
+Structure du dépôt
 
 ```
 .
@@ -80,7 +80,7 @@ Progression de **10 points**, avec 26 règles supplémentaires satisfaites, sans
     └── minimize-surface.sh      # Script de réduction de surface (Phase 2)
 ```
 
-## Perspectives
+# Perspectives
 
 - Automatisation de la démarche avec **Ansible** pour une application reproductible
 - Centralisation des logs vers un **SIEM**
@@ -89,4 +89,4 @@ Progression de **10 points**, avec 26 règles supplémentaires satisfaites, sans
 
 ## Auteure
 
-Malak Motribe — Filière Cybersecurity, Cloud & Mobile Computing — Année universitaire 2025-2026
+Malak Motribe, Filière Cybersecurity, Cloud & Mobile Computing 
