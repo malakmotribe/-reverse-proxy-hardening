@@ -87,6 +87,9 @@ Structure du dépôt
 - Audits de conformité automatisés et réguliers
 - Intégration de mécanismes de détection/réponse aux incidents
 
+
 ## Auteure
 
-Malak Motribe, Filière Cybersecurity, Cloud & Mobile Computing 
+Malak Motribe ,Filière Cybersecurity, Cloud & Mobile Computing 
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)]([https://www.linkedin.com/in/ton-profil](https://www.linkedin.com/in/malak-motribe-75536334a/))
